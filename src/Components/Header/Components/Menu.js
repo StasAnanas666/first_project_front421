@@ -1,25 +1,28 @@
+import { NavLink } from "react-router-dom";
+import "./Menu.css";
+
 function Menu() {
     return (
         <ul className="nav">
             <li className="nav-item">
-                <a className="nav-link text-light" aria-current="page" href="#">
+                <NavLink className="nav-link" to="/">
                     HOME
-                </a>
+                </NavLink>
             </li>
             <li className="nav-item">
-                <a className="nav-link text-light" href="#">
+                <NavLink className="nav-link" to="/blog">
                     BLOG
-                </a>
+                </NavLink>
             </li>
             <li className="nav-item">
-                <a className="nav-link text-light" href="#">
+                <NavLink className="nav-link" to="/about">
                     ABOUT US
-                </a>
+                </NavLink>
             </li>
             <li className="nav-item">
-                <a className="nav-link text-light" href="#">
+                <NavLink className="nav-link" to="/contacts">
                     CONTACTS
-                </a>
+                </NavLink>
             </li>
         </ul>
     );
