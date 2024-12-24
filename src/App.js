@@ -4,6 +4,7 @@ import Blog from "./Pages/Blog/Blog";
 import About from "./Pages/About/About";
 import Contacts from "./Pages/Contacts/Contacts";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BlogPage from "./Pages/Blog/Components/BlogPage";
 
 function App() {
     return (
@@ -15,7 +16,9 @@ function App() {
                         <div className="container my-4">
                             <Routes>
                                 <Route path="/" element={<Home />} />
-                                <Route path="/blog" element={<Blog />} />
+                                <Route path="/blog" element={<Blog />}>
+                                    <Route path=":id" element={<BlogPage />} />
+                                </Route>
                                 <Route path="/about" element={<About />} />
                                 <Route
                                     path="/contacts"
