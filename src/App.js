@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./Components/Header/Header";
 import Home from "./Pages/Home/Home";
 import Blog from "./Pages/Blog/Blog";
@@ -16,46 +16,19 @@ import img5 from "./Pages/images/work5.jpg";
 import img6 from "./Pages/images/work6.jpg";
 
 function App() {
-    const blogs = [
-        {
-            id: 1,
-            title: "Blog #1",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
-            image: img1,
-        },
-        {
-            id: 2,
-            title: "Blog #2",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
-            image: img2,
-        },
-        {
-            id: 3,
-            title: "Blog #3",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
-            image: img3,
-        },
-        {
-            id: 4,
-            title: "Blog #4",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
-            image: img4,
-        },
-        {
-            id: 5,
-            title: "Blog #5",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
-            image: img5,
-        },
-        {
-            id: 6,
-            title: "Blog #6",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
-            image: img6,
-        },
-    ];
+    const blogs = [];
 
-    const [blogsArray, setBlogsArray] = useState(blogs);    
+    const [blogsArray, setBlogsArray] = useState(blogs); 
+    
+    //useEffect вызовется один раз при первом рендере компонента
+    useEffect(() => {
+        setBlogsArray(JSON.parse(localStorage.getItem("blogs")));
+    }, []);
+    
+    //сохраняем начальный массив блогов в localStorage
+    useEffect(() => {
+        localStorage.setItem("blogs", JSON.stringify(blogsArray));
+    }, [blogsArray]);
 
     return (
         <div className="container-fluid-">
@@ -91,3 +64,43 @@ function App() {
 }
 
 export default App;
+
+
+// const blogs = [
+//     {
+//         id: 1,
+//         title: "Blog #1",
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
+//         image: img1,
+//     },
+//     {
+//         id: 2,
+//         title: "Blog #2",
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
+//         image: img2,
+//     },
+//     {
+//         id: 3,
+//         title: "Blog #3",
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
+//         image: img3,
+//     },
+//     {
+//         id: 4,
+//         title: "Blog #4",
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
+//         image: img4,
+//     },
+//     {
+//         id: 5,
+//         title: "Blog #5",
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
+//         image: img5,
+//     },
+//     {
+//         id: 6,
+//         title: "Blog #6",
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eos magni velit fuga unde.",
+//         image: img6,
+//     },
+// ];

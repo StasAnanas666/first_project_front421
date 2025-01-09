@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NewBlogForm(props) {
@@ -7,6 +7,12 @@ function NewBlogForm(props) {
     const [text, setText] = useState("");
     const [image, setImage] = useState(null);
     const navigate = useNavigate();
+
+    //useEffect будет срабатывать при первом рендере компонента, и при каждом изменении аргументов из списка зависимостей
+    useEffect(() => {
+        document.title = `${id} ${title}`;
+        console.log("use effect running");
+    }, [title]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -64,7 +70,7 @@ function NewBlogForm(props) {
                         id="image"
                         className="form-control"
                         files={image}
-                        onChange={(e) => setImage(e.target.files[0])}
+                        onChange={(e) => setImage(null)}
                     />
                 </div>
                 <button

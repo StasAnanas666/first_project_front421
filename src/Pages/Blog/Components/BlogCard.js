@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import topImg from "../../images/top.jpg";
 
 function BlogCard({ id, title, text, image }) {
     return (
@@ -6,12 +7,21 @@ function BlogCard({ id, title, text, image }) {
             <div class="card mb-3" style={{height: "200px"}}>
                 <div class="row g-0">
                     <div class="col-md-2">
-                        <img
+                        {image != null ? (
+                            <img
                             src={image}
                             class="rounded-start"
                             style={{height: "200px"}}
                             alt={title}
-                        />
+                            />
+                        ) : (
+                            <img
+                            src={topImg}
+                            class="rounded-start"
+                            style={{height: "200px"}}
+                            alt={title}
+                            />
+                        )}                       
                     </div>
                     <div class="col-md-10">
                         <div class="card-body">
